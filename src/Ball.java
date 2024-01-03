@@ -31,6 +31,14 @@ public class Ball {
         incY *= -1;
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    public int getX() {
+        return x;
+    }
+
     public int getY() {
         return y;
     }

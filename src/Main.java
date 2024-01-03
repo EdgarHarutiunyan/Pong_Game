@@ -21,7 +21,7 @@ public class Main {
 
         frame.setVisible(true);
 
-        Timer timer = new Timer(5, new ActionListener() {
+        Timer timer = new Timer(60, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 game.gameLogic();

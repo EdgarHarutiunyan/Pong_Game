@@ -42,6 +42,14 @@ public class PongGame extends JPanel implements MouseMotionListener, KeyListener
         ball.bounceOffEdges(0,Main.frame.getWidth());
         paddleUser.move(userYCoordinate);
         paddlePC.move(ball.getY());
+
+        if (paddlePC.ifCollide(ball) || paddleUser.ifCollide(ball)) {
+            System.out.println("PC:" + " X: " + paddlePC.getX() + " Y: " + paddlePC.getY());
+            System.out.println("User:" + " X: " + paddleUser.getX() + " Y: " + paddleUser.getY());
+            System.out.println("Ball: X: " + ball.getX() + " Y: " +ball.getY());
+
+            ball.reverseIncX();
+        }
     }
 
     // Move methods from interfaces MouseMotionListener, KeyListener

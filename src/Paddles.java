@@ -50,6 +50,17 @@ public class Paddles {
                 this.y += speed;
             }
         }
+    }
 
+    public boolean ifCollide(Ball ball) {
+        int rightCorner = x + PADDLE_WIDTH;
+        int bottomY = y + height;
+
+        if (ball.getX() > (x - ball.getSize()) && ball.getX() <= rightCorner) {
+            if (ball.getY() > y && ball.getY() <= bottomY) {
+                return true;
+            }
+        }
+        return false;
     }
 }
