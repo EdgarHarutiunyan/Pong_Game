@@ -39,7 +39,7 @@ public class Ball {
         if (y > 510 || y < top) {
             reverseIncY();
             System.out.println("1x: " + x + " " + "y: " + y);
-            System.out.println(Main.frame.getWidth());
+            //System.out.println(Main.frame.getWidth());
         }
 
         if (x < top || x > bottom - size) {

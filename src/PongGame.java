@@ -10,13 +10,13 @@ public class PongGame extends JPanel implements MouseMotionListener, KeyListener
     private Ball ball;
     private Paddles paddleUser;
     private Paddles paddlePC;
-    private int userMouseYCoordinate;
+    private int userYCoordinate;
 
     public PongGame() {
         this.ball = new Ball(300,200,2,2,10,10,Color.white);
         this.paddlePC = new Paddles(100,0,215,2,Color.lightGray);
         this.paddleUser = new Paddles(100,635,215,2,Color.lightGray);
-        this.userMouseYCoordinate = 0;
+        this.userYCoordinate = 0;
         addMouseMotionListener(this);
 
         /* TO MOVE THE PADDLE BY THE ARROW KEYS
@@ -35,24 +35,22 @@ public class PongGame extends JPanel implements MouseMotionListener, KeyListener
         ball.paint(g);
         paddleUser.paint(g);
         paddlePC.paint(g);
-        paddlePC.move(600);
     }
 
     public void gameLogic() {
         ball.moveBall();
         ball.bounceOffEdges(0,Main.frame.getWidth());
-        paddleUser.move(userMouseYCoordinate);
-
+        paddleUser.move(userYCoordinate);
         paddlePC.move(ball.getY());
-        System.out.println(ball.getY());
     }
 
+    // Move methods from interfaces MouseMotionListener, KeyListener
     @Override
     public void mouseDragged(MouseEvent e) {}
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        userMouseYCoordinate = e.getY();
+        userYCoordinate = e.getY();
     }
 
     @Override
@@ -63,15 +61,15 @@ public class PongGame extends JPanel implements MouseMotionListener, KeyListener
         int keyPressed = e.getKeyCode();
         System.out.println(keyPressed);
         if (keyPressed == KeyEvent.VK_DOWN) {
-            userMouseYCoordinate += 20;
+            userYCoordinate += 20;
         }
         if (keyPressed == KeyEvent.VK_UP) {
-            userMouseYCoordinate -= 20;
+            userYCoordinate -= 20;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        userMouseYCoordinate = paddleUser.getY() + (paddleUser.getHeight()/2);
+        userYCoordinate = paddleUser.getY() + (paddleUser.getHeight()/2);
     }
 }
