@@ -53,7 +53,9 @@ public class PongGame extends JPanel implements MouseMotionListener, KeyListener
         paddleUser.paint(g);
         paddlePC.paint(g);
 
-        g.drawString("Opponent   " + PCScore + "   Player   " + userScore, 250, 50);
+        g.setFont(new Font("FireMono Nerd Font",Font.BOLD, 50));
+        g.drawString("" + PCScore, 160, 60);
+        g.drawString("" + userScore, 480, 60);
     }
 
     public void gameLogic() {
