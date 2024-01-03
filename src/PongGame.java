@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.util.Random;
 
 public class PongGame extends JPanel implements MouseMotionListener, KeyListener {
 
@@ -11,12 +12,28 @@ public class PongGame extends JPanel implements MouseMotionListener, KeyListener
     private Paddles paddleUser;
     private Paddles paddlePC;
     private int userYCoordinate;
+    private int userScore, PCScore;
+    int x,y;
+
+    Random random;
 
     public PongGame() {
-        this.ball = new Ball(300,200,2,2,10,10,Color.white);
+        random = new Random();
+
+        x = random.nextInt(7) - 3;
+        y = random.nextInt(7) - 3;
+
+        while (x == y) {
+            x = random.nextInt(7) - 3;
+            y = random.nextInt(7) - 3;
+        }
+
+        this.ball = new Ball(300,200,x,y,10,10,Color.white);
         this.paddlePC = new Paddles(100,0,215,2,Color.lightGray);
         this.paddleUser = new Paddles(100,635,215,2,Color.lightGray);
         this.userYCoordinate = 0;
+        this.userScore = 0;
+        this.PCScore = 0;
         addMouseMotionListener(this);
 
         /* TO MOVE THE PADDLE BY THE ARROW KEYS
@@ -35,6 +52,8 @@ public class PongGame extends JPanel implements MouseMotionListener, KeyListener
         ball.paint(g);
         paddleUser.paint(g);
         paddlePC.paint(g);
+
+        g.drawString("Opponent   " + PCScore + "   Player   " + userScore, 250, 50);
     }
 
     public void gameLogic() {
@@ -50,6 +69,19 @@ public class PongGame extends JPanel implements MouseMotionListener, KeyListener
 
             ball.reverseIncX();
         }
+
+        if (ball.getX() < 0) {
+            userScore++;
+            resetGame();
+        }
+        if (ball.getX() > WIDTH) {
+            PCScore++;
+            resetGame();
+        }
+    }
+
+    public void resetGame() {
+        ball = new Ball(300,200,x,y,10,10,Color.white);
     }
 
     // Move methods from interfaces MouseMotionListener, KeyListener

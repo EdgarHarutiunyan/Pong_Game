@@ -46,15 +46,6 @@ public class Ball {
     public void bounceOffEdges(int top, int bottom) {
         if (y > 510 || y < top) {
             reverseIncY();
-            System.out.println("1x: " + x + " " + "y: " + y);
-            //System.out.println(Main.frame.getWidth());
         }
-
-        if (x < top || x > bottom - size) {
-            reverseIncX();
-            System.out.println("2x: " + x + " " + "y: " + y);
-        }
-
-
     }
 }
